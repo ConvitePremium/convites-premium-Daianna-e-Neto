@@ -77,9 +77,8 @@ window.CONFIG = {
   // mostrarTexto: true mostra “Voltar”; false deixa apenas a área clicável.
   // A posição pode ser alterada no editor ?editor=1.
   botoesVoltar: {
-    presentes: { mostrarTexto: false, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
-    dresscode: { mostrarTexto: false, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
-    contagem: { mostrarTexto: true, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } }
+    presentes: { mostrarTexto:false, posicao: {"left":43.57220447284345,"top":89.76237645363449,"width":12.843450479233226,"height":5.654772098400399} },
+    dresscode: { mostrarTexto:false, posicao: {"left":43.57220447284345,"top":86.07997769477629,"width":13.04792020267572,"height":6.230146081392908} },
   },
 
   // ----- POSIÇÃO DOS BOTÕES NA TELA PRINCIPAL ----------------------------
@@ -88,33 +87,11 @@ window.CONFIG = {
   //   left/top: canto superior esquerdo do botão
   //   width/height: tamanho do botão
     hotspots: {
-    confirm: {
-      left: 39.353845658746735,
-      top: 81.40964012432231,
-      width: 21.2793265096246,
-      height: 16.572808420977253
-    },
-
-    map: {
-      left: 15.340967388138388,
-      top: 81.4096443071042,
-      width: 20.11034417739611,
-      height: 16.463160976786646
-    },
-
-    gift: {
-      left: 64.00694699668546,
-      top: 81.62895592661293,
-      width: 16.5,
-      height: 16.35350516703228
-    },
-
-    dress: {
-      left: 81.0,
-      top: 81.62895592661293,
-      width: 16.5,
-      height: 16.35350516703228
-    }
+        confirm: { left:15.430529215056639, top:72.66395733873821, width:12.487003601277955, height:12.6 },
+        map: { left:34.97037283941635, top:72.89410760291301, width:12.135915762859371, height:12.320470055142636 },
+        gift: { left:53.37436537727651, top:72.99834618172531, width:11.59264863718051, height:12.556033367477632 },
+        dress: { left:72.41214681509585, top:73.22849226311821, width:12.001603684105431, height:11.405285401492614 }
+  }
   },
 
   // ----- CONTAGEM REGRESSIVA ---------------------------------------------
