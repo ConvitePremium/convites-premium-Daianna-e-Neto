@@ -23,21 +23,21 @@ window.CONFIG = {
   // ----- IDENTIDADE DO CONVITE -------------------------------------------
   // Nome do aniversariante. Aparece no título da aba do navegador e nos
   // textos automáticos do convite.
-  nome: "Maya",
+  nome: "Neto & Daianna",
 
   // ----- WHATSAPP (CONFIRMAR PRESENÇA) -----------------------------------
   // numero: DDI + DDD + número, SÓ DÍGITOS (sem +, espaço, parênteses ou traço).
   //         Ex.: 55 (Brasil) + 31 (DDD) + 985657116 -> "5531985657116"
   // mensagem: texto que já vem pré-preenchido quando a pessoa abre o WhatsApp.
   whatsapp: {
-    numero: "5581994815258",
-    mensagem: "Olá! Confirmo minha presença no aniversário da Maya."
+    numero: "5588994897535",
+    mensagem: "Olá! Confirmo minha presença no casamento de Daianna & Neto."
   },
 
   // ----- LOCALIZAÇÃO (BOTÃO MAPA) ----------------------------------------
   // Link completo do Google Maps. Abra o local no Maps, clique em "Compartilar"
   // -> "Copiar link" e cole aqui (mantenha as aspas).
-  mapa: "https://www.google.com/local/place/fid/0x7ab17b194233e37:0x9fd861d70d98dfdd/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3D1esMHTRM4-0MvCPuxueicw%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D294.368%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFjFlc01IVFJNNC0wTXZDUHV4dWVpY3c%3D&sa=X&ved=2ahUKEwiDq-n438iVAxXVr5UCHWXPGOIQpx96BAgbEBI",
+  mapa: "https://www.google.com/maps/place/Travessuras+Buffet/@-7.213481,-39.3280364,3a,75y,240.41h,91.88t/data=!3m7!1e1!3m5!1swVE1nXFvUGB8Ao-ZGKSYEg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.8763387758586418%26panoid%3DwVE1nXFvUGB8Ao-ZGKSYEg%26yaw%3D240.41132646563025!7i16384!8i8192!4m15!1m8!3m7!1s0x7a1820efec2ff89:0xd6c4b02555c3a45a!2sTravessuras+Buffet!8m2!3d-7.2135043!4d-39.3281053!10e5!16s%2Fg%2F11bw_62x1k!3m5!1s0x7a1820efec2ff89:0xd6c4b02555c3a45a!8m2!3d-7.2135043!4d-39.3281053!16s%2Fg%2F11bw_62x1k?entry=ttu&g_ep=EgoyMDI2MDcxNC4wIKXMDSoASAFQAw%3D%3D",
 
   // ----- QUAIS TELAS APARECEM --------------------------------------------
   // video:     true  -> toca o vídeo (assets/video.mp4) depois da abertura.
@@ -50,7 +50,7 @@ window.CONFIG = {
     localizacao: true,
     presentes: true,
     dresscode: true,
-    contagem: true
+    contagem: false
   },
 
   // ----- TEXTOS DOS BOTÕES -----------------------------------------------
@@ -77,8 +77,8 @@ window.CONFIG = {
   // mostrarTexto: true mostra “Voltar”; false deixa apenas a área clicável.
   // A posição pode ser alterada no editor ?editor=1.
   botoesVoltar: {
-    presentes: { mostrarTexto: true, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
-    dresscode: { mostrarTexto: true, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
+    presentes: { mostrarTexto: false, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
+    dresscode: { mostrarTexto: false, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } },
     contagem: { mostrarTexto: true, posicao: { left: 3.7, top: 1.5, width: 20, height: 6 } }
   },
 
@@ -114,13 +114,6 @@ window.CONFIG = {
       top: 81.62895592661293,
       width: 16.5,
       height: 16.35350516703228
-    },
-
-    countdown: {
-      left: 39.5,
-      top: 68.0,
-      width: 21.0,
-      height: 8.0
     }
   },
 
