@@ -81,18 +81,35 @@
   display:none;
   position:fixed;
   left:12px;
-  right:12px;
   top:12px;
-  bottom:auto;
   z-index:50;
+  width:min(560px, calc(100vw - 24px));
   max-width:560px;
-  margin:auto;
   background:rgba(255,255,255,.94);
   color:#4b2634;
   border-radius:18px;
   padding:12px;
   box-shadow:0 12px 34px #0006;
   font-size:13px;
+}
+.editor-drag-handle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:-12px -12px 8px;
+  padding:12px;
+  border-radius:18px 18px 8px 8px;
+  background:rgba(255,255,255,.65);
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+}
+.editor-drag-handle:active{cursor:grabbing}
+.editor-drag-handle span{
+  font-size:11px;
+  opacity:.65;
+  white-space:nowrap;
 }
     body.editor-on .editor-panel{display:block}.editor-panel b{font-size:14px}.editor-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}.editor-panel button,.editor-panel select,.editor-panel input{border:1px solid #d5a8b7;border-radius:10px;padding:8px;background:#fff;color:#4b2634;font-weight:700}.editor-panel input{width:74px}.editor-panel textarea{width:100%;height:78px;margin-top:8px;border:1px solid #d5a8b7;border-radius:10px;padding:8px;font-size:12px}.editor-mini{opacity:.75;font-size:12px;margin-top:6px}.edit-open{display:none;position:fixed;right:12px;bottom:12px;z-index:45;border:0;border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.88);color:#6b3a21;font-weight:800;box-shadow:0 4px 16px #0004}body.can-edit .edit-open{display:block}body.editor-on .edit-open{display:none}
   </style>
@@ -156,7 +173,10 @@
 
   <button class="edit-open" id="editOpen" type="button">Editar áreas</button>
   <div class="editor-panel" id="editorPanel">
-    <b>Editor de áreas de clique</b>
+    <div id="editorDragHandle" class="editor-drag-handle">
+      <b>Editor de áreas de clique</b>
+      <span>Arraste por aqui</span>
+    </div>
     <div class="editor-mini">Arraste a área no convite. Puxe a bolinha no canto para aumentar/diminuir. Use <b>?editor=1</b> no link para abrir este editor.</div>
     <div class="editor-row">
       <select id="areaSelect"><option value="confirm">WhatsApp</option><option value="map">Localização</option><option value="gift">Presentes</option><option value="dress">Dress Code</option><option value="countdown">Contagem (botão)</option><option value="counter">Contador (na tela)</option></select>
@@ -614,6 +634,59 @@
       function closeEditor(){ document.body.classList.remove("editor-on"); }
       $("editOpen").addEventListener("click", openEditor);
       $("closeEditor").addEventListener("click", closeEditor);
+
+      // ---- JANELA DO EDITOR ARRASTÁVEL ---------------------------------
+      const editorPanel = $("editorPanel");
+      const editorDragHandle = $("editorDragHandle");
+      let editorDragging = false;
+      let editorStartX = 0;
+      let editorStartY = 0;
+      let editorStartLeft = 0;
+      let editorStartTop = 0;
+
+      editorDragHandle.addEventListener("pointerdown", event=>{
+        if(event.target.closest("button,input,select,textarea")) return;
+        event.preventDefault();
+
+        const rect = editorPanel.getBoundingClientRect();
+        editorDragging = true;
+        editorStartX = event.clientX;
+        editorStartY = event.clientY;
+        editorStartLeft = rect.left;
+        editorStartTop = rect.top;
+
+        editorPanel.style.left = rect.left + "px";
+        editorPanel.style.top = rect.top + "px";
+        editorPanel.style.right = "auto";
+        editorPanel.style.bottom = "auto";
+        editorPanel.style.margin = "0";
+
+        editorDragHandle.setPointerCapture(event.pointerId);
+      });
+
+      editorDragHandle.addEventListener("pointermove", event=>{
+        if(!editorDragging) return;
+
+        const rect = editorPanel.getBoundingClientRect();
+        let newLeft = editorStartLeft + (event.clientX - editorStartX);
+        let newTop = editorStartTop + (event.clientY - editorStartY);
+
+        newLeft = Math.max(0, Math.min(window.innerWidth - rect.width, newLeft));
+        newTop = Math.max(0, Math.min(window.innerHeight - 45, newTop));
+
+        editorPanel.style.left = newLeft + "px";
+        editorPanel.style.top = newTop + "px";
+      });
+
+      function stopEditorDragging(event){
+        if(!editorDragging) return;
+        editorDragging = false;
+        try{ editorDragHandle.releasePointerCapture(event.pointerId); }catch(e){}
+      }
+
+      editorDragHandle.addEventListener("pointerup", stopEditorDragging);
+      editorDragHandle.addEventListener("pointercancel", stopEditorDragging);
+
       if(params.has("editor")) openEditor();
       $("areaSelect").addEventListener("change", e=>selectArea(e.target.value));
 
