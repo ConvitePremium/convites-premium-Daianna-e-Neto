@@ -625,9 +625,9 @@
       let selected = areaSelect.value || Object.keys(HOTSPOTS)[0] || "confirm";
 
       function editorScreenFor(key){
-        if(key === "counter" || key === "backCountdown") return "countdownScreen";
-        if(key === "backGift") return "giftScreen";
-        if(key === "backDress") return "dressScreen";
+        if(key === "counter" || key === "countdown" || key === "backCountdown") return "countdownScreen";
+        if(key === "gift" || key === "backGift") return "giftScreen";
+        if(key === "dress" || key === "backDress") return "dressScreen";
         return "mainScreen";
       }
       function openEditor(){ show(editorScreenFor(selected)); document.body.classList.add("editor-on","can-edit"); selectArea(selected); }
